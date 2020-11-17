@@ -21,6 +21,7 @@ public class GameCalculator extends Base {
 
 		List<WebElement> lastFiveResults = getDriver().findElements(Locators.scoreLastFive);
 		List<Integer> results = new ArrayList<>();
+
 		char home;
 		char away;
 		int intHome;
@@ -55,6 +56,11 @@ public class GameCalculator extends Base {
 				break;
 			case BOTH_TO_SCORE_AND_OVER_OR_EQUAL_3:
 				if (intHome >= 1 && intAway >= 1 && finalResult >= 3) {
+					results.add(finalResult);
+				}
+				break;
+			case OVER_OR_EQUAL_4:
+				if (finalResult >= 4) {
 					results.add(finalResult);
 				}
 			}
