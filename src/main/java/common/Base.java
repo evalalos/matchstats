@@ -25,17 +25,15 @@ public class Base {
 	public void createChromeDriver() {
 
 		String DRIVER_NAME_CHROME = "webdriver.chrome.driver";
-		String DRIVER_PATH = "/Users/milos/QA/chromedriver/chromedriver";
+		String DRIVER_PATH = "src/chromedriver";
 		System.setProperty(DRIVER_NAME_CHROME, DRIVER_PATH);
 
 		if (getDriver() == null) {
-
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
 	}
 
 	public void openUrl(String url) {
