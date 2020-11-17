@@ -7,3 +7,8 @@
 - Reorganize the classes from 'common' package
 - Implement checking if 'matches.txt' file exists and if not create new one
 - Append the actual day or date into 'matches.txt' -> eg. matches_sunday.txt
+- Remove matches.txt file before creating new one
+- Include matches >= 2015. year
+- Do not include live and already played matches
+- Add option if no mutual matches
+- Add option if no 5 mutual matches
