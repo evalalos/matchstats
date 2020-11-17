@@ -1,0 +1,9 @@
+- Rename the name of the games in Enum.Games class
+- Refactor the calculate() method
+- Refactor locators and names in the Locators class
+- Remove the Thread.Sleep from 'prihvacam' method
+- Remove 'verifyPrikaziJosMecevaIsVisible' method
+- Refactor 'getLastFiveResultsAndCollect' method
+- Reorganize the classes from 'common' package
+- Implement checking if 'matches.txt' file exists and if not create new one
+- Append the actual day or date into 'matches.txt' -> eg. matches_sunday.txt
