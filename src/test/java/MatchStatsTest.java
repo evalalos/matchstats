@@ -8,22 +8,21 @@ import java.io.IOException;
 
 public class MatchStatsTest extends Base {
 
+	private static final String URL = "https://rezultati.com";
+	private static final String TXT_FILE_PATH = "/Users/milos/Desktop/matches.txt/";
+
 	@Before
 	public void setUp(){
 		createChromeDriver();
-
-		openUrl("https://rezultati.com");
+		openUrl(URL);
 	}
 
 	@Test
-	public void milos() throws IOException, InterruptedException {
+	public void matchStats() throws IOException {
 
 		Receiver receiver = new Receiver();
 
-		receiver
-				//.prihvacam()
-				.collectMatch("/Users/milos/Desktop/matches.txt/");
-
+		receiver.collectMatch(TXT_FILE_PATH);
 	}
 
 	@After
