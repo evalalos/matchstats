@@ -19,7 +19,7 @@ public class Base {
 	}
 
 	public void setDriver(WebDriver driver) {
-		this.driver = driver;
+		Base.driver = driver;
 	}
 
 	public void createChromeDriver() {
@@ -78,16 +78,6 @@ public class Base {
 			driver.switchTo().window(winNames[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-
-	public boolean isElementPresent(By by) {
-
-		try {
-			driver.findElement(by);
-			return true;
-		} catch (org.openqa.selenium.NoSuchElementException e) {
-			return false;
 		}
 	}
 
