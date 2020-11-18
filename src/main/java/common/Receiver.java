@@ -36,14 +36,14 @@ public class Receiver extends Base {
 		return this;
 	}
 
-	private void getLastFiveResultsAndCollect(Games games) throws IOException {
+	private void getLastFiveResultsAndCollect(Games games, int includeCriteria) throws IOException {
 
 		if (!verifyNoMutualMatchesIsNotVisible()) {
-			gameCalculator.calculate(games);
+			gameCalculator.calculate(games, includeCriteria);
 		}
 	}
 
-	public void collectMatch(Games games) throws IOException {
+	public void collectMatch(Games games, int includeCriteria) throws IOException {
 
 		List<WebElement> allMatches = getDriver().findElements(Locators.allMatchesElements);
 
@@ -51,7 +51,7 @@ public class Receiver extends Base {
 			all.click();
 			switchToWindow();
 			goToHeadToHeadTab();
-			getLastFiveResultsAndCollect(games);
+			getLastFiveResultsAndCollect(games, includeCriteria);
 			switchTab();
 		}
 	}

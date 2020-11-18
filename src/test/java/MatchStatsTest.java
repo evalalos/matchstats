@@ -21,7 +21,7 @@ public class MatchStatsTest extends Base {
 
 		Receiver receiver = new Receiver();
 
-		receiver.collectMatch(Games.BOTH_TO_SCORE_AND_OVER_2_5);
+		receiver.collectMatch(Games.OVER_3_5, 3);
 	}
 
 	@After
