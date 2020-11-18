@@ -28,19 +28,6 @@ public class Receiver extends Base {
 		return exists;
 	}
 
-	public boolean verifyPrikaziJosMecevaIsVisible() {
-
-		boolean isVisible = true;
-
-		try {
-			getDriver().findElement(Locators.prikaziJosMeceva).isDisplayed();
-		} catch (NoSuchElementException ignore) {
-			isVisible = false;
-		}
-
-		return isVisible;
-	}
-
 	private Receiver goToHeadToHeadTab() {
 
 		waitForElementToBeClickable(Locators.headToHeadTab);

@@ -39,13 +39,13 @@ public class GameCalculator extends Base {
 			finalResult = intHome + intAway;
 
 			switch (games) {
-			case OVER_OR_EQUAL_3:
-				if (finalResult >= 3) {
+			case OVER_2_5:
+				if (finalResult > 2.5) {
 					results.add(finalResult);
 				}
 				break;
-			case UNDER_OR_EQUAL_2:
-				if (finalResult <= 2) {
+			case UNDER_2_5:
+				if (finalResult < 2.5) {
 					results.add(finalResult);
 				}
 				break;
@@ -54,13 +54,13 @@ public class GameCalculator extends Base {
 					results.add(finalResult);
 				}
 				break;
-			case BOTH_TO_SCORE_AND_OVER_OR_EQUAL_3:
-				if (intHome >= 1 && intAway >= 1 && finalResult >= 3) {
+			case BOTH_TO_SCORE_AND_OVER_2_5:
+				if (intHome >= 1 && intAway >= 1 && finalResult > 2.5) {
 					results.add(finalResult);
 				}
 				break;
-			case OVER_OR_EQUAL_4:
-				if (finalResult >= 4) {
+			case OVER_3_5:
+				if (finalResult > 3.5) {
 					results.add(finalResult);
 				}
 			}
