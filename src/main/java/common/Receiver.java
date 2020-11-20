@@ -1,6 +1,5 @@
 package common;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class Receiver extends Base {
 
 	public void collectMatch(Games games, int includeCriteria) throws IOException {
 
-		List<WebElement> allMatches = getDriver().findElements(Locators.allMatchesElements);
+		List<WebElement> allMatches = getDriver().findElements(Locators.unplayedMatches);
 
 		for (WebElement all : allMatches) {
 			all.click();

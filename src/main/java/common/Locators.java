@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 public class Locators {
 
-	public static final By allMatchesElements = By
-			.xpath("//div[@class='sportName soccer']//div[@class='event__participant event__participant--home']");
+	public static final By unplayedMatches = By
+			.xpath("//div[@class='sportName soccer']//div[@class='event__time']");
 
 	public static final By headToHeadTab = By.xpath("//div[@id='detail-bookmarks']//li[@id='li-match-head-2-head']");
 
