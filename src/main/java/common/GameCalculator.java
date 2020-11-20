@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameCalculator extends Base {
@@ -91,11 +92,11 @@ public class GameCalculator extends Base {
 				break;
 			}
 
-			if (results.size() >= includeCriteria) {
-				String title = trimTitle();
-				out.println(title);
-				out.close();
-			}
+		}
+		if (results.size() >= includeCriteria) {
+			String title = trimTitle();
+			out.println(title + " -> " + results.size());
+			out.close();
 		}
 	}
 
