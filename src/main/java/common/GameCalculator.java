@@ -8,14 +8,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GameCalculator extends Base {
 
 	public void calculate(Games games, int includeCriteria) throws IOException {
 
-		String fileLocation = "target/matches.txt";
+		String fileLocation = FileName.MATCHES_UNSORTED;
 		FileWriter fw = new FileWriter(fileLocation, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter out = new PrintWriter(bw);
@@ -91,11 +90,10 @@ public class GameCalculator extends Base {
 				}
 				break;
 			}
-
 		}
 		if (results.size() >= includeCriteria) {
 			String title = trimTitle();
-			out.println(title + " -> " + results.size());
+			out.println(results.size() + " -> " + title);
 			out.close();
 		}
 	}

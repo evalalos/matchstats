@@ -3,8 +3,13 @@ package common;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Receiver extends Base {
 
@@ -52,6 +57,20 @@ public class Receiver extends Base {
 			goToHeadToHeadTab();
 			getLastFiveResultsAndCollect(games, includeCriteria);
 			switchTab();
+		}
+		sortList();
+
+	}
+
+	public void sortList() {
+
+		try (Stream<String> lines = Files.lines(Paths.get(FileName.MATCHES_UNSORTED))) {
+			int n = 0;
+			List<String> sortedLines = lines.sorted(Comparator.comparing(line -> line.substring(n)))
+					.sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+			Files.write(Paths.get(FileName.MATCHES), sortedLines);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
