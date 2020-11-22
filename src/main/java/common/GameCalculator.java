@@ -30,65 +30,76 @@ public class GameCalculator extends Base {
 
 		for (WebElement element : lastFiveResults) {
 
-			home = element.getText().charAt(0);
-			away = element.getText().charAt(4);
+			if (element.getText().length() == 5) {
 
-			intHome = Integer.parseInt(String.valueOf(home));
-			intAway = Integer.parseInt(String.valueOf(away));
+				home = element.getText().charAt(0);
+				away = element.getText().charAt(4);
 
-			finalResult = intHome + intAway;
+				intHome = Integer.parseInt(String.valueOf(home));
+				intAway = Integer.parseInt(String.valueOf(away));
 
-			switch (games) {
-			case OVER_1_5:
-				if (finalResult > 1.5) {
-					results.add(finalResult);
+				finalResult = intHome + intAway;
+
+				switch (games) {
+				case OVER_1_5:
+					if (finalResult > 1.5) {
+						results.add(finalResult);
+					}
+					break;
+				case BETWEEN_2_AND_3:
+					if (finalResult >= 2 && finalResult <= 3) {
+						results.add(finalResult);
+					}
+					break;
+				case OVER_2_5:
+					if (finalResult > 2.5) {
+						results.add(finalResult);
+					}
+					break;
+				case UNDER_2_5:
+					if (finalResult < 2.5) {
+						results.add(finalResult);
+					}
+					break;
+				case BOTH_TO_SCORE:
+					if (intHome >= 1 && intAway >= 1) {
+						results.add(finalResult);
+					}
+					break;
+				case BOTH_TO_SCORE_AND_OVER_2_5:
+					if (intHome >= 1 && intAway >= 1 && finalResult > 2.5) {
+						results.add(finalResult);
+					}
+					break;
+				case OVER_3_5:
+					if (finalResult > 3.5) {
+						results.add(finalResult);
+					}
+					break;
+				case OVER_4_5:
+					if (finalResult > 4.5) {
+						results.add(finalResult);
+					}
+					break;
+				case OVER_5_5:
+					if (finalResult > 5.5) {
+						results.add(finalResult);
+					}
+					break;
+				case OVER_6_5:
+					if (finalResult > 6.5) {
+						results.add(finalResult);
+					}
+					break;
 				}
-				break;
-			case BETWEEN_2_AND_3:
-				if (finalResult >= 2 && finalResult <= 3) {
-					results.add(finalResult);
-				}
-				break;
-			case OVER_2_5:
-				if (finalResult > 2.5) {
-					results.add(finalResult);
-				}
-				break;
-			case UNDER_2_5:
-				if (finalResult < 2.5) {
-					results.add(finalResult);
-				}
-				break;
-			case BOTH_TO_SCORE:
-				if (intHome >= 1 && intAway >= 1) {
-					results.add(finalResult);
-				}
-				break;
-			case BOTH_TO_SCORE_AND_OVER_2_5:
-				if (intHome >= 1 && intAway >= 1 && finalResult > 2.5) {
-					results.add(finalResult);
-				}
-				break;
-			case OVER_3_5:
-				if (finalResult > 3.5) {
-					results.add(finalResult);
-				}
-				break;
-			case OVER_4_5:
-				if (finalResult > 4.5) {
-					results.add(finalResult);
-				}
-				break;
-			case OVER_5_5:
-				if (finalResult > 5.5) {
-					results.add(finalResult);
-				}
-				break;
-			case OVER_6_5:
-				if (finalResult > 6.5) {
-					results.add(finalResult);
-				}
-				break;
+			} else {
+				String title = trimTitle();
+				String fileLocationUnprocessed = FileName.MATCHES_UNPROCESSED;
+				FileWriter fwUnprocessed = new FileWriter(fileLocationUnprocessed, true);
+				BufferedWriter bwUnprocessed = new BufferedWriter(fwUnprocessed);
+				PrintWriter outUnprocessed = new PrintWriter(bwUnprocessed);
+				outUnprocessed.println(title);
+				outUnprocessed.close();
 			}
 		}
 		if (results.size() >= includeCriteria) {
