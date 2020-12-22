@@ -40,14 +40,14 @@ public class Receiver extends Base {
 		return this;
 	}
 
-	private void getLastFiveResultsAndCollect(Games games, int includeCriteria) throws IOException {
+	private void getLastFiveResultsAndCollect(Games game, int includeCriteria) throws IOException {
 
 		if (!verifyNoMutualMatchesIsNotVisible()) {
-			gameCalculator.calculate(games, includeCriteria);
+			gameCalculator.calculate(game, includeCriteria);
 		}
 	}
 
-	public void collectMatch(Games games, int includeCriteria) throws IOException {
+	public void collectMatch(Games game, int includeCriteria) throws IOException {
 
 		List<WebElement> allMatches = getDriver().findElements(Locators.unplayedMatches);
 
@@ -55,20 +55,19 @@ public class Receiver extends Base {
 			all.click();
 			switchToWindow();
 			goToHeadToHeadTab();
-			getLastFiveResultsAndCollect(games, includeCriteria);
+			getLastFiveResultsAndCollect(game, includeCriteria);
 			switchTab();
 		}
-		sortList();
-
+		sortList(game, includeCriteria);
 	}
 
-	public void sortList() {
+	public void sortList(Games game, int includeCriteria) {
 
-		try (Stream<String> lines = Files.lines(Paths.get(FileName.MATCHES_UNSORTED))) {
+		try (Stream<String> lines = Files.lines(Paths.get(FileName.MATCHES_UNSORTED(game, includeCriteria)))) {
 			int n = 0;
 			List<String> sortedLines = lines.sorted(Comparator.comparing(line -> line.substring(n)))
 					.sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-			Files.write(Paths.get(FileName.MATCHES), sortedLines);
+			Files.write(Paths.get(FileName.MATCHES(game, includeCriteria)), sortedLines);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -10,22 +10,19 @@ import java.io.IOException;
 
 public class MatchStatsTest extends Base {
 
-	@Before
-	public void setUp() {
+	@Before public void setUp() {
 		createChromeDriver();
 		openUrl(Url.REZULTATI_COM);
 	}
 
-	@Test
-	public void matchStats() throws IOException {
+	@Test public void matchStats() throws IOException {
 
 		Receiver receiver = new Receiver();
 
-		receiver.collectMatch(Games.BOTH_TO_SCORE, 5);
+		receiver.collectMatch(Games.BOTH_TO_SCORE, 4);
 	}
 
-	@After
-	public void close() {
+	@After public void close() {
 		quitDriver();
 	}
 }

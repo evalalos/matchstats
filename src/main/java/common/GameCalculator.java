@@ -12,9 +12,9 @@ import java.util.List;
 
 public class GameCalculator extends Base {
 
-	public void calculate(Games games, int includeCriteria) throws IOException {
+	public void calculate(Games game, int includeCriteria) throws IOException {
 
-		String fileLocation = FileName.MATCHES_UNSORTED;
+		String fileLocation = FileName.MATCHES_UNSORTED(game, includeCriteria);
 		FileWriter fw = new FileWriter(fileLocation, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter out = new PrintWriter(bw);
@@ -29,7 +29,6 @@ public class GameCalculator extends Base {
 		int finalResult;
 
 		for (WebElement element : lastFiveResults) {
-
 			if (element.getText().length() == 5) {
 
 				home = element.getText().charAt(0);
@@ -40,7 +39,7 @@ public class GameCalculator extends Base {
 
 				finalResult = intHome + intAway;
 
-				switch (games) {
+				switch (game) {
 				case OVER_1_5:
 					if (finalResult > 1.5) {
 						results.add(finalResult);
