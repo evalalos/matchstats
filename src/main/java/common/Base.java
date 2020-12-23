@@ -3,6 +3,7 @@ package common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,6 +28,11 @@ public class Base {
 		String DRIVER_NAME_CHROME = "webdriver.chrome.driver";
 		String DRIVER_PATH = "src/chromedriverlinux";
 		System.setProperty(DRIVER_NAME_CHROME, DRIVER_PATH);
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080",
+				"--ignore-certificate-errors");
+		driver = new ChromeDriver(options);
 
 		if (getDriver() == null) {
 			driver = new ChromeDriver();
