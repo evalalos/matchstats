@@ -25,7 +25,7 @@ public class Base {
 	public void createChromeDriver() {
 
 		String DRIVER_NAME_CHROME = "webdriver.chrome.driver";
-		String DRIVER_PATH = "src/chromedriver";
+		String DRIVER_PATH = "src/chromedrivermaclinux";
 		System.setProperty(DRIVER_NAME_CHROME, DRIVER_PATH);
 
 		if (getDriver() == null) {

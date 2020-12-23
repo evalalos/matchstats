@@ -19,7 +19,7 @@ public class MatchStatsTest extends Base {
 
 		Receiver receiver = new Receiver();
 
-		receiver.collectMatch(Games.BOTH_TO_SCORE, 4);
+		receiver.collectMatch(Games.OVER_3_5, 4);
 	}
 
 	@After public void close() {
