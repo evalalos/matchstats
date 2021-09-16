@@ -15,10 +15,10 @@ public class Receiver extends Base {
 
 	GameCalculator gameCalculator = new GameCalculator();
 
-	public Receiver prihvacam() throws InterruptedException {
+	public Receiver acceptCookies() throws InterruptedException {
 
 		Thread.sleep(2000);
-		getDriver().findElement(Locators.prihvacam).click();
+		getDriver().findElement(Locators.acceptCookies).click();
 
 		return this;
 	}
@@ -40,28 +40,55 @@ public class Receiver extends Base {
 		return this;
 	}
 
-	private void getLastFiveResultsAndCollect(Games game, int includeCriteria) throws IOException {
+	private void getLastFiveResultsAndCollectFullTime(Game game, int includeCriteria) throws IOException {
 
 		if (!verifyNoMutualMatchesIsNotVisible()) {
-			gameCalculator.calculate(game, includeCriteria);
+			gameCalculator.calculateFullTime(game, includeCriteria);
 		}
 	}
 
-	public void collectMatch(Games game, int includeCriteria) throws IOException {
+	private void getLastFiveResultsAndCollectHalfTime(Game game, int includeCriteria) throws IOException, InterruptedException {
 
+		if (!verifyNoMutualMatchesIsNotVisible()) {
+			gameCalculator.calculateHalfTime(game, includeCriteria);
+		}
+	}
+
+	public void collectFullTimeMatch(Game game, int includeCriteria) throws IOException, InterruptedException {
+
+		acceptCookies();
 		List<WebElement> allMatches = getDriver().findElements(Locators.unplayedMatches);
 
 		for (WebElement all : allMatches) {
 			all.click();
 			switchToWindow();
 			goToHeadToHeadTab();
-			getLastFiveResultsAndCollect(game, includeCriteria);
+			getLastFiveResultsAndCollectFullTime(game, includeCriteria);
 			switchTab();
 		}
 		sortList(game, includeCriteria);
 	}
 
-	public void sortList(Games game, int includeCriteria) {
+	public void collectHalfTimeMatch(Game game, int includeCriteria) throws IOException, InterruptedException {
+
+		acceptCookies();
+		List<WebElement> allMatches = getDriver().findElements(Locators.unplayedMatches);
+
+		for (WebElement all : allMatches) {
+			all.click();
+			switchToWindow();
+			Thread.sleep(500);
+			goToHeadToHeadTab();
+			Thread.sleep(500);
+			getLastFiveResultsAndCollectHalfTime(game, includeCriteria);
+			Thread.sleep(2000);
+			switchTab();
+			Thread.sleep(1000);
+		}
+		sortList(game, includeCriteria);
+	}
+
+	public void sortList(Game game, int includeCriteria) {
 
 		try (Stream<String> lines = Files.lines(Paths.get(FileName.MATCHES_UNSORTED(game, includeCriteria)))) {
 			int n = 0;

@@ -1,5 +1,5 @@
 import common.Base;
-import common.Games;
+import common.Game;
 import common.Receiver;
 import common.Url;
 import org.junit.After;
@@ -15,11 +15,12 @@ public class MatchStatsTest extends Base {
 		openUrl(Url.REZULTATI_COM);
 	}
 
-	@Test public void matchStats() throws IOException {
+	@Test public void matchStats() throws IOException, InterruptedException {
 
 		Receiver receiver = new Receiver();
 
-		receiver.collectMatch(Games.OVER_3_5, 4);
+		receiver.collectFullTimeMatch(Game.BOTH_TO_SCORE_AND_OVER_2_5, 4);
+		//receiver.collectHalfTimeMatch(Game.ONE_THREE, 4);
 	}
 
 	@After public void close() {

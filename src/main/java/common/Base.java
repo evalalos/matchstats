@@ -26,12 +26,13 @@ public class Base {
 	public void createChromeDriver() {
 
 		String DRIVER_NAME_CHROME = "webdriver.chrome.driver";
-		String DRIVER_PATH = "src/chromedriverlinux";
+		String DRIVER_PATH = "src/chromedrivermac";
 		System.setProperty(DRIVER_NAME_CHROME, DRIVER_PATH);
 
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080",
+		options.addArguments("--window-size=1920,1080",
 				"--ignore-certificate-errors");
+		options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 		driver = new ChromeDriver(options);
 
 		if (getDriver() == null) {
@@ -82,6 +83,33 @@ public class Base {
 				}
 			}
 			driver.switchTo().window(winNames[0]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void closeLastOpenedWindow() {
+
+		try {
+			Set<String> windows = driver.getWindowHandles();
+
+			Iterator<String> iterator = windows.iterator();
+
+			String[] winNames = new String[windows.size()];
+
+			int i = 0;
+			while (iterator.hasNext()) {
+				winNames[i] = iterator.next();
+				i++;
+			}
+
+			if (winNames.length > 1) {
+				for (i = winNames.length; i > 2; i--) {
+					driver.switchTo().window(winNames[i - 1]);
+					driver.close();
+				}
+			}
+			driver.switchTo().window(winNames[1]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
