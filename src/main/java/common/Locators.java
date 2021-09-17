@@ -22,4 +22,8 @@ public class Locators {
 			+ " none;')])]");
 
 	public static final By acceptCookies = By.xpath("//button[@id='onetrust-accept-btn-handler']");
+
+	public static final By firstHalfResult = By.xpath("//div[contains(@class,'incidentsHeader')]//div[text()='1. poluvrijeme']//..//div[2]");
+
+	public static final By secondHalfResult = By.xpath("//div[contains(@class,'incidentsHeader')]//div[text()='2. poluvrijeme']//..//div[2]");
 }

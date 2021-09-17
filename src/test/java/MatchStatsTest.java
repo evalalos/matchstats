@@ -19,8 +19,8 @@ public class MatchStatsTest extends Base {
 
 		Receiver receiver = new Receiver();
 
-		receiver.collectFullTimeMatch(Game.BOTH_TO_SCORE_AND_OVER_2_5, 4);
-		//receiver.collectHalfTimeMatch(Game.ONE_THREE, 4);
+		//receiver.collectFullTimeMatch(Game.BOTH_TO_SCORE, 4);
+		receiver.collectHalfTimeMatch(Game.MINIMUM_ONE_GOAL_BOTH_HALF, 4);
 	}
 
 	@After public void close() {
